@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Book Recommendations - Library Management System{% endblock %}
+{% block content %}
+<h1 class="mb-4">Books Similar to "{{ book.title }}"</h1>
+
+<div class="alert alert-info">
+    <p><strong>Based on:</strong> "{{ book.title }}" by {{ book.author }} ({{ book.genre }})</p>
+</div>
+
+<div class="row">
+    {% for rec_book in recommendations %}
+        <div class="col-md-4">
+            <div class="card book-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ rec_book.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ rec_book.author }}</h6>
+                    <p class="card-text">
+                        <strong>Genre:</strong> {{ rec_book.genre }}<br>
+                        <strong>Year:</strong> {{ rec_book.publication_year }}<br>
+                        <strong>Status:</strong> 
+                        {% if rec_book.is_checked_out %}
+                            <span class="text-danger">Checked out</span>
+                        {% else %}
+                            <span class="text-success">Available</span>
+                        {% endif %}
+                    </p>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            {% if rec_book.is_checked_out %}
+                                <a href="{{ url_for('checkin_book', book_id=rec_book.id) }}" class="btn btn-sm btn-success">Check In</a>
+                            {% else %}
+                                <a href="{{ url_for('checkout_book', book_id=rec_book.id) }}" class="btn btn-sm btn-primary">Check Out</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="col-12">
+            <p>No similar books found in the library.</p>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="mt-3">
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Library</a>
+</div>
+{% endblock %}

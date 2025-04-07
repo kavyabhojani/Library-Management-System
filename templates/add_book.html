@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+{% block title %}Add Book - Library Management System{% endblock %}
+{% block content %}
+<h1 class="mb-4">Add New Book</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="author" name="author" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="genre" class="form-label">Genre</label>
+                        <input type="text" class="form-control" id="genre" name="genre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="year" class="form-label">Publication Year</label>
+                        <input type="number" class="form-control" id="year" name="year" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Book</button>
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
