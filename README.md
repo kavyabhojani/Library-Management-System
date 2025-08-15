@@ -1,6 +1,6 @@
 # Library Management System
 
-A full-featured library management system with both command-line and web interfaces, built as part of a coding assessment.
+A full-featured library management system with both command-line and web interfaces.
 
 ## Features
 
